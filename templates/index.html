@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card {
+            background: #1e293b;
+            border-radius: 16px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+        }
+        h1 { font-size: 1.75rem; margin-bottom: 0.5rem; }
+        p.subtitle { color: #94a3b8; margin-bottom: 2rem; font-size: 0.95rem; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; }
+        input[type="number"] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #334155;
+            border-radius: 8px;
+            background: #0f172a;
+            color: #e2e8f0;
+            font-size: 1rem;
+            outline: none;
+        }
+        input[type="number"]:focus { border-color: #6366f1; }
+        button {
+            width: 100%;
+            margin-top: 1.5rem;
+            padding: 0.85rem;
+            border: none;
+            border-radius: 8px;
+            background: #6366f1;
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover { background: #4f46e5; }
+        .result {
+            margin-top: 2rem;
+            padding: 1.25rem;
+            background: #0f172a;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            text-align: center;
+        }
+        .result .label { color: #94a3b8; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+        .result .password {
+            font-family: "SF Mono", "Fira Code", monospace;
+            font-size: 1.25rem;
+            word-break: break-all;
+            color: #818cf8;
+        }
+        .error { color: #f87171; margin-top: 1rem; font-size: 0.9rem; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Password Generator</h1>
+        <p class="subtitle">Generate a random password of any length.</p>
+        <form method="POST">
+            <label for="length">Password length</label>
+            <input type="number" id="length" name="length" value="16" min="1" max="1000" required>
+            <button type="submit">Generate Password</button>
+        </form>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        {% if password %}
+            <div class="result">
+                <div class="label">Your Password</div>
+                <div class="password">{{ password }}</div>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
