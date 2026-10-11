@@ -12,6 +12,11 @@ def generate_password(length):
     return "".join(random.choice(PASSWORD_CHARS) for _ in range(length))
 
 
+@app.route("/favicon.ico")
+def favicon():
+    return "", 204
+
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     password = None
